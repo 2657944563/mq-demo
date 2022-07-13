@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalTime;
+import java.util.HashMap;
 
 
 @RunWith(SpringRunner.class)
@@ -40,5 +41,14 @@ public class SpringAmqp {
         String exchangeName = "itcast.direct";
         String msg = "hello every one!";
         rabbitTemplate.convertAndSend(exchangeName, "red", msg);
+    }
+
+    @SneakyThrows
+    @Test
+    public void test4() {
+        String exchangeName = "objectQueue";
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("zs", "12");
+        rabbitTemplate.convertAndSend(exchangeName, hashMap);
     }
 }

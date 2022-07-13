@@ -8,7 +8,7 @@ import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-import javax.lang.model.type.ExecutableType;
+import java.util.HashMap;
 
 @Component
 public class SpringConsumer {
@@ -47,5 +47,10 @@ public class SpringConsumer {
     ))
     public void te4(String msg) {
         System.out.println("queue2: " + msg);
+    }
+
+    @RabbitListener(queues = "objectQueue")
+    public void te5(HashMap<String, String> hashMap) {
+        System.out.println(hashMap.toString());
     }
 }
